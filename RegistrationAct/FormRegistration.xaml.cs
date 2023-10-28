@@ -46,26 +46,35 @@ public partial class FormRegistration
 
     private long StudentNumber(string studNum)
     {
-        if (Regex.IsMatch(studNum, @"^[0-9]{10,11}$"))
+        if (Regex.IsMatch(studNum, @"[0-9]"))
         {
+            if (studNum.Length is < 10 or > 11)
+            {
+                throw new OverflowException("Student Number should be 10 or 11 digits!");
+            }
             _studentNo = long.Parse(studNum);
         }
         else
         {
-            throw new FormatException("Student Number should be a number! and must be 10 or 11 digits!");
+            throw new FormatException("Student Number should be a number!");
         }
+        
         return _studentNo;
     }
 
     private long ContactNo(string contact)
     {
-        if (Regex.IsMatch(contact, @"^[0-9]{10,11}$"))
+        if (Regex.IsMatch(contact, @"[0-9]"))
         {
+            if (contact.Length is < 10 or > 11)
+            {
+                throw new OverflowException("Contact Number should be 10 or 11 digits!");
+            }
             _contactNo = long.Parse(contact);
         }
         else
         {
-            throw new FormatException("Contact Number should be a number! and must be 10 or 11 digits!");
+            throw new FormatException("Contact Number should be a number!");
         }
         return _contactNo;
     }
@@ -124,9 +133,17 @@ public partial class FormRegistration
         {
             StudentInformationClass.SetStudNo = StudentNumber(TxtStudentNo.Text);
             StudentInformationClass.SetProgram = CbPrograms.Text;
+            if (StudentInformationClass.SetProgram == string.Empty)
+            {
+                throw new IndexOutOfRangeException("Program should not be empty!");
+            }
             StudentInformationClass.SetFullName = FullName(TxtLastName.Text, TxtFirstName.Text, TxtMiddleInitial.Text);
             StudentInformationClass.SetAge = Age(TxtAge.Text);
             StudentInformationClass.SetGender = CbGender.Text;
+            if (StudentInformationClass.SetGender == string.Empty)
+            {
+                throw new IndexOutOfRangeException("Gender should not be empty!");
+            }
             if (DatePickerBirthday.SelectedDate == null)
             {
                 throw new ArgumentNullException(nameof(DatePickerBirthday.SelectedDate), "Birthday should not be empty!");
