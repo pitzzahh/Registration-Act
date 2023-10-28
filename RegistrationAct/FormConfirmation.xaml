@@ -4,8 +4,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="FormConfirmation" Height="450" Width="800">
-    <Grid>
+        Title="Confirmation"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
+        Loaded="FormConfirmation_OnLoaded"
+        Height="350"
+        Width="400">
+    <StackPanel Margin="10">
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type StackPanel}">
+                <Setter Property="Margin" Value="0 3" />
+            </Style>
+        </StackPanel.Resources>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap"
+                       FontSize="16">
+                <Span>
+                    <Bold>Student No: </Bold>
+                    <Run x:Name="LblStudentNo" />
+                </Span>
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap"
+                       FontSize="16">
+                <Span>
+                    <Bold>Name: </Bold>
+                    <Run x:Name="LblName" />
+                </Span>
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap"
+                       FontSize="16">
+                <Span>
+                    <Bold>Program: </Bold>
+                    <Run x:Name="LblProgram" />
+                </Span>
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap"
+                       FontSize="16">
+                <Span>
+                    <Bold>Age: </Bold>
+                    <Run x:Name="LblAge" />
+                </Span>
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap"
+                       FontSize="16">
+                <Span>
+                    <Bold>Birthday: </Bold>
+                    <Run x:Name="LblBirthDay" />
+                </Span>
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap"
+                       FontSize="16">
+                <Span>
+                    <Bold>Gender: </Bold>
+                    <Run x:Name="LblGender" />
+                </Span>
+            </TextBlock>
+        </StackPanel>
         
-    </Grid>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap"
+                       FontSize="16">
+                <Span>
+                    <Bold>Contact No: </Bold>
+                    <Run x:Name="LblContactNo" />
+                </Span>
+            </TextBlock>
+        </StackPanel>
+        
+        <Button Content="Submit" 
+                Width="80" 
+                Height="25" 
+                Margin="0 50"
+                Click="OnSubmit"/>
+    </StackPanel>
 </Window>

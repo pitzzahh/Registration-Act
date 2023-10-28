@@ -1,4 +1,4 @@
-﻿<Window x:Class="RegistrationAct.OrganizationProfile"
+﻿<Window x:Class="RegistrationAct.FormRegistration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,16 +7,25 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Title="OrganizationProfile"
-        Loaded="OrganizationProfile_OnLoaded"
+        Loaded="FormRegistration_OnLoaded"
+        Closing="FormRegistration_OnClosing"
         Height="350"
         Width="650">
 
-    <StackPanel Margin="10">
+    <StackPanel Margin="10" HorizontalAlignment="Center">
+        
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type Grid}">
+                <Setter Property="Margin" Value="0 5"/>
+            </Style>
+        </StackPanel.Resources> 
+        
         <TextBlock Text="Registration"
                    FontSize="24"
                    Margin="0 0 0 20"
                    FontWeight="Bold" />
-        <Grid Margin="0 0 0 5">
+        
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -27,7 +36,7 @@
                            Margin="0 0 5 0"
                            FontWeight="Bold" />
                 <TextBox
-                    x:Name="StudentNo"
+                    x:Name="TxtStudentNo"
                     Width="154" />
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -39,7 +48,7 @@
                     Width="220" />
             </StackPanel>
         </Grid>
-        <Grid Margin="0 0 0 5">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -50,24 +59,30 @@
                 <TextBlock Text="Last Name"
                            Margin="0 0 13 0"
                            FontWeight="Bold" />
-                <TextBox Width="153" />
+                <TextBox
+                    x:Name="TxtLastName"
+                    Width="153" />
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
                 <TextBlock Text="First Name"
                            Margin="5 0 5 0"
                            FontWeight="Bold" />
-                <TextBox Width="220" />
+                <TextBox 
+                    x:Name="TxtFirstName"
+                    Width="220" />
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal">
                 <TextBlock Text="M.I."
                            Margin="5 0 5 0"
                            FontWeight="Bold" />
 
-                <TextBox Width="30" Height="23" />
+                <TextBox 
+                    x:Name="TxtMiddleInitial"
+                    Width="30" Height="23" />
             </StackPanel>
         </Grid>
 
-        <Grid Margin="0 10">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -79,17 +94,19 @@
                 <TextBlock Text="Age"
                            Margin="0 0 5 0"
                            FontWeight="Bold" />
-                <TextBox Width="50" />
+                <TextBox 
+                    x:Name="TxtAge"
+                    Width="50" />
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal">
                 <TextBlock Text="Gender"
                            Margin="5 0 18 0"
                            FontWeight="Bold" />
-                <ComboBox Width="100" />
+                <ComboBox x:Name="CbGender" Width="100" />
             </StackPanel>
         </Grid>
         
-        <Grid Margin="0 10">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -101,17 +118,21 @@
                 <TextBlock Text="Birthday"
                            Margin="0 0 5 0"
                            FontWeight="Bold" />
-                <DatePicker Width="154" />
+                <DatePicker x:Name="DatePickerBirthday" Width="154" />
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal">
                 <TextBlock Text="Contact No."
                            Margin="5 0 18 0"
                            FontWeight="Bold" />
-                <TextBox Width="150" />
+                <TextBox x:Name="TxtContactNo" Width="150" />
             </StackPanel>
         </Grid>
         
-        <Button Margin="0 30" Width="100" Height="30" Content="Register"/>
+        <Button Margin="0 30" 
+                Width="100" 
+                Height="30" 
+                Content="Register"
+                Click="OnRegister"/>
 
     </StackPanel>
 </Window>
