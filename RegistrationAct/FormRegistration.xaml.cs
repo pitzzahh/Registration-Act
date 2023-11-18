@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 
@@ -11,10 +12,9 @@ namespace RegistrationAct;
 public partial class FormRegistration
 {
     private string _fullName = null!;
-    private int _age;
+    private byte _age;
     private long _studentNo;
     private long _contactNo;
-    private FormConfirmation _formConfirmation = new();
 
     public FormRegistration()
     {
@@ -93,11 +93,11 @@ public partial class FormRegistration
         return _fullName;
     }
 
-    private int Age(string age)
+    private byte Age(string age)
     {
         if (Regex.IsMatch(age, @"^[0-9]{1,3}$"))
         {
-            _age = int.Parse(age);
+            _age = byte.Parse(age);
         }
         else if (age == string.Empty)
         {
@@ -115,7 +115,7 @@ public partial class FormRegistration
     {
         public static long SetStudNo { get; set; }
         public static long SetContactNo { get; set; }
-        public static long SetAge { get; set; }
+        public static byte SetAge { get; set; }
         public static string SetProgram { get; set; } = string.Empty;
         public static string SetGender { get; set; } = string.Empty;
         public static string SetBirthDay { get; set; } = string.Empty;
@@ -124,11 +124,6 @@ public partial class FormRegistration
 
     private void OnRegister(object sender, RoutedEventArgs e)
     {
-        if (!_formConfirmation.IsVisible)
-        {
-            _formConfirmation = new FormConfirmation();
-        }
-
         try
         {
             StudentInformationClass.SetStudNo = StudentNumber(TxtStudentNo.Text);
@@ -150,7 +145,26 @@ public partial class FormRegistration
             }
             StudentInformationClass.SetBirthDay = DatePickerBirthday.SelectedDate.Value.ToString("yyyy-M-d dd");
             StudentInformationClass.SetContactNo = ContactNo(TxtContactNo.Text);
-            _formConfirmation.ShowDialog();
+            var student = new Student
+            {
+                StudentNumber = StudentInformationClass.SetStudNo,
+                FullName = StudentInformationClass.SetFullName,
+                Program = StudentInformationClass.SetProgram,
+                Gender = StudentInformationClass.SetGender,
+                Age = StudentInformationClass.SetAge,
+                BirthDay = StudentInformationClass.SetBirthDay,
+                ContactNumber = StudentInformationClass.SetContactNo
+            };
+            var fileInfo = new FileInfo
+            {
+                FileContent = student.ToString(),
+                FileName = student.StudentNumber + ".txt"
+            };
+            
+            using var streamWriter = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileInfo.FileName));
+            streamWriter.WriteLine(fileInfo.FileContent);
+            Console.WriteLine(fileInfo.FileContent);
+            
         }
         catch (FormatException formatException)
         {
