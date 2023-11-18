@@ -5,8 +5,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
         Title="FrmStudentRecord"
-        Height="350" 
-        Width="800">
+        WindowStartupLocation="CenterScreen"
+        Height="320" 
+        Width="450">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -28,7 +29,7 @@
             
             <ListView x:Name="VListView" />
             
-            <StackPanel Grid.Column="1" Margin="5">
+            <StackPanel Grid.Column="1" Margin="5 5 0 5">
                 <Button Width="100" 
                         Height="30" 
                         Content="Register"

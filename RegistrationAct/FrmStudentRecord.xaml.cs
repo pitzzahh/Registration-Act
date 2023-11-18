@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using Microsoft.Win32;
@@ -40,5 +41,9 @@ public partial class FrmStudentRecord
         MessageBox.Show("Successfully Uploaded!");
         VListView.Items.Clear();
     }
-    
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        DialogResult = true;
+    }
 }

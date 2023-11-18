@@ -205,11 +205,15 @@ public partial class FormRegistration
 
     private void OpenRecords(object sender, RoutedEventArgs e)
     {
-        if (_frmStudentRecord == null)
+        if (!_frmStudentRecord.IsVisible)
         {
             _frmStudentRecord = new FrmStudentRecord();
         }
-        _frmStudentRecord.Show();
         Hide();
+        _frmStudentRecord.ShowDialog();
+        if (_frmStudentRecord.DialogResult == true)
+        {
+            Show();
+        }
     }
 }

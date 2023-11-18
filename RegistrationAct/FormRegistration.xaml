@@ -144,7 +144,7 @@
                     Width="100" 
                     Height="30" 
                     HorizontalAlignment="Right"
-                    Content="Register"
+                    Content="Records"
                     Click="OpenRecords"/>
         </Grid>
 
