@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
         Title="OrganizationProfile"
+        Height="320"
+        Width="650"
         Loaded="FormRegistration_OnLoaded"
-        Closing="FormRegistration_OnClosing"
-        Height="350"
-        Width="650">
+        Closing="FormRegistration_OnClosing">
 
     <StackPanel Margin="10" HorizontalAlignment="Center">
         
@@ -128,11 +127,26 @@
             </StackPanel>
         </Grid>
         
-        <Button Margin="0 30" 
-                Width="100" 
-                Height="30" 
-                Content="Register"
-                Click="OnRegister"/>
+        <Grid Margin="0 30 0 0">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1"
+                    Width="100" 
+                    Height="30" 
+                    Content="Register"
+                    Click="OnRegister"/>
+            
+            <Button Grid.Column="2" 
+                    Width="100" 
+                    Height="30" 
+                    HorizontalAlignment="Right"
+                    Content="Register"
+                    Click="OpenRecords"/>
+        </Grid>
 
     </StackPanel>
 </Window>

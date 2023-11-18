@@ -1,0 +1,50 @@
+<Window x:Class="RegistrationAct.FrmStudentRecord"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="FrmStudentRecord"
+        Height="350" 
+        Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="View Record"
+                   Margin="5"
+                   FontSize="24"
+                   FontWeight="SemiBold"/>
+        
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <ListView x:Name="VListView" />
+            
+            <StackPanel Grid.Column="1" Margin="5">
+                <Button Width="100" 
+                        Height="30" 
+                        Content="Register"
+                        Click="OpenRegister"/>
+                
+                <Separator/>
+                <Button Width="100" 
+                        Height="30" 
+                        Content="Find"
+                        Click="OnFind"/>
+                <Separator/>
+                <Button Width="100" 
+                        Height="30" 
+                        Content="Upload"
+                        Click="OnUpload"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

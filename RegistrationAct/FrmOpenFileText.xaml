@@ -1,22 +1,22 @@
-<Window x:Class="RegistrationAct.FrmLab1"
+<Window x:Class="RegistrationAct.FrmOpenFileText"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="FrmLab1"
-        Height="250" Width="350">
+        Title="FrmOpenFileText"
+        Height="450" Width="450">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox FontSize="14" TextWrapping="Wrap" x:Name="TxtInput" Margin="0 10" />
+        <ListView FontSize="14"  x:Name="TxtShowText" Margin="0 10" />
 
         <Button Grid.Row="1"
                 Width="100"
-                Content="Create"
+                Content="Open"
                 FontSize="18"
                 Height="30"
                 Click="OnCreateFile" />

@@ -15,6 +15,8 @@ public partial class FormRegistration
     private byte _age;
     private long _studentNo;
     private long _contactNo;
+    private FrmStudentRecord _frmStudentRecord = new();
+
 
     public FormRegistration()
     {
@@ -52,13 +54,14 @@ public partial class FormRegistration
             {
                 throw new OverflowException("Student Number should be 10 or 11 digits!");
             }
+
             _studentNo = long.Parse(studNum);
         }
         else
         {
             throw new FormatException("Student Number should be a number!");
         }
-        
+
         return _studentNo;
     }
 
@@ -70,12 +73,14 @@ public partial class FormRegistration
             {
                 throw new OverflowException("Contact Number should be 10 or 11 digits!");
             }
+
             _contactNo = long.Parse(contact);
         }
         else
         {
             throw new FormatException("Contact Number should be a number!");
         }
+
         return _contactNo;
     }
 
@@ -84,12 +89,15 @@ public partial class FormRegistration
         if (Regex.IsMatch(lastName, @"^[a-zA-Z]+$") || Regex.IsMatch(firstName, @"^[a-zA-Z]+$") ||
             Regex.IsMatch(middleInitial, @"^[a-zA-Z]+$"))
         {
-            _fullName = middleInitial != string.Empty ? lastName + ", " + firstName + ", " + middleInitial : lastName + ", " + firstName;
+            _fullName = middleInitial != string.Empty
+                ? lastName + ", " + firstName + ", " + middleInitial
+                : lastName + ", " + firstName;
         }
         else
         {
             throw new FormatException("Name should be a string!");
         }
+
         return _fullName;
     }
 
@@ -132,6 +140,7 @@ public partial class FormRegistration
             {
                 throw new IndexOutOfRangeException("Program should not be empty!");
             }
+
             StudentInformationClass.SetFullName = FullName(TxtLastName.Text, TxtFirstName.Text, TxtMiddleInitial.Text);
             StudentInformationClass.SetAge = Age(TxtAge.Text);
             StudentInformationClass.SetGender = CbGender.Text;
@@ -139,10 +148,13 @@ public partial class FormRegistration
             {
                 throw new IndexOutOfRangeException("Gender should not be empty!");
             }
+
             if (DatePickerBirthday.SelectedDate == null)
             {
-                throw new ArgumentNullException(nameof(DatePickerBirthday.SelectedDate), "Birthday should not be empty!");
+                throw new ArgumentNullException(nameof(DatePickerBirthday.SelectedDate),
+                    "Birthday should not be empty!");
             }
+
             StudentInformationClass.SetBirthDay = DatePickerBirthday.SelectedDate.Value.ToString("yyyy-M-d dd");
             StudentInformationClass.SetContactNo = ContactNo(TxtContactNo.Text);
             var student = new Student
@@ -160,11 +172,12 @@ public partial class FormRegistration
                 FileContent = student.ToString(),
                 FileName = student.StudentNumber + ".txt"
             };
-            
-            using var streamWriter = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileInfo.FileName));
+
+            using var streamWriter =
+                new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    fileInfo.FileName));
             streamWriter.WriteLine(fileInfo.FileContent);
             Console.WriteLine(fileInfo.FileContent);
-            
         }
         catch (FormatException formatException)
         {
@@ -188,5 +201,15 @@ public partial class FormRegistration
     {
         Environment.Exit(0);
         Application.Current.Shutdown(0);
+    }
+
+    private void OpenRecords(object sender, RoutedEventArgs e)
+    {
+        if (_frmStudentRecord == null)
+        {
+            _frmStudentRecord = new FrmStudentRecord();
+        }
+        _frmStudentRecord.Show();
+        Hide();
     }
 }
